@@ -1,0 +1,25 @@
+<fieldset>
+  <form #gymForm="ngForm" [formGroup]="myForm"  (submit)="onSubmit()">
+    <h1>Gym Membership Form</h1>
+    <div>
+      <label for="name">Name</label><br>
+      <input type="text" id="name" formControlName="name"><br><br>
+    </div>
+
+    <div>
+      <label for="email">Email</label><br>
+      <input type="text" id="email" formControlName="email"><br><br>
+    </div>
+
+    <div>
+      <h2>Add favorite exercise</h2>
+      <button type="button">Add exercise</button>
+    </div>
+
+    <br>
+    <button type="submit" [disabled]="gymForm.invalid">Submit</button>
+
+  </form>
+
+
+</fieldset>
