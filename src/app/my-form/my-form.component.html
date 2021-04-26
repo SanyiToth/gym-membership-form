@@ -18,8 +18,12 @@
     <br>
 
     <div formArrayName="exercises">
-      <div *ngFor="let control of exercises.controls; let i = index">
-        <input type="text" [formControlName]="i">
+      <div *ngFor="let control of exercises.controls; let i = index" [formGroupName]="i">
+        <input type="text" formControlName="name">
+        <select name="levelSelect" formControlName="level">
+          <option value="" disabled selected>Select a level</option>
+          <option *ngFor="let level of levels" [value]="level">{{ level }}</option>
+        </select>
         <button (click)="removeExercise(i)">Delete</button>
       </div>
     </div>

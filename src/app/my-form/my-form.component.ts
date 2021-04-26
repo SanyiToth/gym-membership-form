@@ -8,6 +8,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 })
 export class MyFormComponent implements OnInit {
   myForm: FormGroup;
+  levels: string[] = ['beginner', 'amateur', 'advanced', 'expert'];
 
   constructor(private formBuilder: FormBuilder) {
     this.myForm = this.createMyForm();
@@ -18,11 +19,19 @@ export class MyFormComponent implements OnInit {
       name: [null, [Validators.required, Validators.minLength(5)]],
       email: [null, [Validators.required, Validators.email]],
       exercises: this.formBuilder.array([
-        'Running',
-        'Skipping',
-        'Weight lifting'
-      ]),
-
+        this.formBuilder.group({
+          name: 'Running',
+          level: null
+        }),
+        this.formBuilder.group({
+          name: 'Skipping',
+          level: null
+        }),
+        this.formBuilder.group({
+          name: 'Weight lifting',
+          level: null
+        })
+      ])
     });
   }
 
@@ -31,7 +40,11 @@ export class MyFormComponent implements OnInit {
   }
 
   addExercise(): void {
-    this.exercises.push(new FormControl());
+    const newExercise = this.formBuilder.group({
+      name: null,
+      level: null
+    });
+    this.exercises.push(newExercise);
   }
 
   removeExercise(index: number): void {
@@ -39,6 +52,7 @@ export class MyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('exercises', this.exercises);
   }
 
   get exercises(): FormArray {
