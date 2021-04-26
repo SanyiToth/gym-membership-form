@@ -15,8 +15,8 @@
       <input type="radio" formControlName="gender" value="male"> male
       <input type="radio" formControlName="gender" value="female"> female
       <input type="radio" formControlName="gender" value="n/a"> prefer not to say
-      <div class="error">
-        <p>Please choose your gender!</p>
+      <div class="error" *ngIf="gender?.invalid && myForm?.touched">
+        Please choose your gender!
       </div>
     </div>
 
@@ -30,11 +30,14 @@
       <div *ngFor="let control of exercises.controls; let i = index" [formGroupName]="i">
         <input type="text" formControlName="name">
         <select name="levelSelect" formControlName="level">
-          <option value="" disabled selected>Select a level</option>
+          <option disabled selected value="">Select a level:</option>
           <option *ngFor="let level of levels" [value]="level">{{ level }}</option>
         </select>
         <button (click)="removeExercise(i)">Delete</button>
       </div>
+    </div>
+    <div class="error" *ngIf="exercises?.invalid && myForm?.touched">
+      Please add at least one exercise!
     </div>
 
     <br>

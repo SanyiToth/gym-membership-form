@@ -19,20 +19,7 @@ export class MyFormComponent implements OnInit {
       name: [null, [Validators.required, Validators.minLength(5)]],
       email: [null, [Validators.required, Validators.email]],
       gender: [null, Validators.required],
-      exercises: this.formBuilder.array([
-        this.formBuilder.group({
-          name: 'Running',
-          level: null
-        }),
-        this.formBuilder.group({
-          name: 'Skipping',
-          level: null
-        }),
-        this.formBuilder.group({
-          name: 'Weight lifting',
-          level: null
-        })
-      ])
+      exercises: this.formBuilder.array([], Validators.required)
     });
   }
 
@@ -42,8 +29,8 @@ export class MyFormComponent implements OnInit {
 
   addExercise(): void {
     const newExercise = this.formBuilder.group({
-      name: null,
-      level: null
+      name: [null, Validators.required],
+      level: [null, Validators.required]
     });
     this.exercises.push(newExercise);
   }
@@ -58,5 +45,9 @@ export class MyFormComponent implements OnInit {
 
   get exercises(): FormArray {
     return this.myForm.get('exercises') as FormArray;
+  }
+
+  get gender(): FormArray {
+    return this.myForm.get('gender') as FormArray;
   }
 }
