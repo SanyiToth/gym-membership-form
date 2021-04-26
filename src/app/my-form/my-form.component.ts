@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-my-form',
@@ -8,6 +8,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class MyFormComponent implements OnInit {
   myForm: FormGroup;
+  exercises = new FormArray([
+    new FormControl(),
+    new FormControl(),
+    new FormControl()
+  ]);
+
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -18,7 +24,13 @@ export class MyFormComponent implements OnInit {
   createMyForm(): FormGroup {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(5)]],
-      email: [null, [Validators.required, Validators.email]]
+      email: [null, [Validators.required, Validators.email]],
+      exercises: this.formBuilder.array([
+        'Running',
+        'Skipping',
+        'Weight lifting'
+      ]),
+
     });
   }
 
@@ -29,4 +41,7 @@ export class MyFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get users(): FormArray {
+    return this.myForm.get('users') as FormArray;
+  }
 }

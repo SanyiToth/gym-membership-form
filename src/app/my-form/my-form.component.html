@@ -8,12 +8,15 @@
 
     <div>
       <label for="email">Email</label><br>
-      <input type="text" id="email" formControlName="email"><br><br>
+      <input type="text" id="email" formControlName="email"><br>
     </div>
 
-    <div>
+    <div formArrayName="exercises">
       <h2>Add favorite exercise</h2>
       <button type="button">Add exercise</button>
+      <div *ngFor="let control of exercises.controls; let i = index">
+        <input type="text" [formControlName]="i" >
+      </div>
     </div>
 
     <br>
