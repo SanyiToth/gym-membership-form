@@ -1,5 +1,5 @@
 <fieldset>
-  <form #gymForm="ngForm" [formGroup]="myForm"  (submit)="onSubmit()">
+  <form #gymForm="ngForm" [formGroup]="myForm" (submit)="onSubmit()">
     <h1>Gym Membership Form</h1>
     <div>
       <label for="name">Name</label><br>
@@ -11,11 +11,15 @@
       <input type="text" id="email" formControlName="email"><br>
     </div>
 
-    <div formArrayName="exercises">
+    <div>
       <h2>Add favorite exercise</h2>
-      <button type="button">Add exercise</button>
+      <button (click)="addExercise()" type="button">Add exercise</button>
+    </div>
+    <br>
+
+    <div formArrayName="exercises">
       <div *ngFor="let control of exercises.controls; let i = index">
-        <input type="text" [formControlName]="i" >
+        <input type="text" [formControlName]="i">
       </div>
     </div>
 

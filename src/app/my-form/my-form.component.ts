@@ -8,11 +8,12 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 })
 export class MyFormComponent implements OnInit {
   myForm: FormGroup;
-  exercises = new FormArray([
-    new FormControl(),
-    new FormControl(),
-    new FormControl()
-  ]);
+
+  /*  exercises = new FormArray([
+      new FormControl(),
+      new FormControl(),
+      new FormControl()
+    ]);*/
 
 
   constructor(private formBuilder: FormBuilder) {
@@ -38,10 +39,14 @@ export class MyFormComponent implements OnInit {
     console.log('myForm', this.myForm.value);
   }
 
+  addExercise(): void {
+    this.exercises.push(new FormControl());
+  }
+
   ngOnInit(): void {
   }
 
-  get users(): FormArray {
-    return this.myForm.get('users') as FormArray;
+  get exercises(): FormArray {
+    return this.myForm.get('exercises') as FormArray;
   }
 }
