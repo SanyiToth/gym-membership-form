@@ -20,6 +20,7 @@
     <div formArrayName="exercises">
       <div *ngFor="let control of exercises.controls; let i = index">
         <input type="text" [formControlName]="i">
+        <button (click)="removeExercise(i)">Delete</button>
       </div>
     </div>
 
