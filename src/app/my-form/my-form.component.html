@@ -8,7 +8,16 @@
 
     <div>
       <label for="email">Email</label><br>
-      <input type="text" id="email" formControlName="email"><br>
+      <input type="text" id="email" formControlName="email"><br><br>
+    </div>
+
+    <div>
+      <input type="radio" formControlName="gender" value="male"> male
+      <input type="radio" formControlName="gender" value="female"> female
+      <input type="radio" formControlName="gender" value="n/a"> prefer not to say
+      <div class="error">
+        <p>Please choose your gender!</p>
+      </div>
     </div>
 
     <div>

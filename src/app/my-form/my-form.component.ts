@@ -18,6 +18,7 @@ export class MyFormComponent implements OnInit {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(5)]],
       email: [null, [Validators.required, Validators.email]],
+      gender: [null, Validators.required],
       exercises: this.formBuilder.array([
         this.formBuilder.group({
           name: 'Running',
